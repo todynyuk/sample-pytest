@@ -1,6 +1,6 @@
 import random
 
-from main.utils.http_manager import HttpManager
+from utils.http_manager import HttpManager
 
 
 class Bookings:

@@ -2,8 +2,8 @@ from selenium.webdriver.common.by import By
 import time
 import re
 
-from main.locators.elements_page_locators import DevicePageLocators
-from main.pages.base_page import BasePage
+from locators.elements_page_locators import DevicePageLocators
+from pages.base_page import BasePage
 
 
 class DevicePage(BasePage):

@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
 import time
 
-from main.locators.elements_page_locators import MainPageLocators
-from main.pages.base_page import BasePage
+from locators.elements_page_locators import MainPageLocators
+from pages.base_page import BasePage
 
 
 class MainPage(BasePage):

@@ -1,9 +1,9 @@
-from main.pages.device_page import DevicePage
-from main.pages.devices_category_page import DeviceCategory
-from main.pages.main_page import MainPage
-from main.pages.sub_category_page import SubCategory
+from pages.device_page import DevicePage
+from pages.devices_category_page import DeviceCategory
+from pages.main_page import MainPage
+from pages.sub_category_page import SubCategory
 import logging
-from main.utils.attachments import attach_screenshot, attach_logs
+from utils.attachments import attach_screenshot, attach_logs
 
 
 class TestDetailsPage:

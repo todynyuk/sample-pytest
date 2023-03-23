@@ -6,8 +6,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 
-from main.locators.elements_page_locators import DeviceCategoryLocators
-from main.pages.base_page import BasePage
+from locators.elements_page_locators import DeviceCategoryLocators
+from pages.base_page import BasePage
 
 
 class DeviceCategory(BasePage):
