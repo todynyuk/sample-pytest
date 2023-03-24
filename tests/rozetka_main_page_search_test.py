@@ -1,13 +1,10 @@
 import logging
-import time
 
 from pytest_zebrunner import attach_test_run_label, attach_test_run_artifact_reference, attach_test_label, \
     attach_test_screenshot
 from pytest_zebrunner.zebrunner_logging import ZebrunnerHandler
 from pytest_zebrunner import CurrentTestRun
-from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webelement import WebElement
 
 logger = logging.getLogger(__name__)
 logger.addHandler(ZebrunnerHandler())
@@ -41,7 +38,7 @@ def test_rozetka_correct_search(driver):
     logger.info(goods_title_text)
     assert str(goods_title_text.lower()).__contains__(
         search_value.lower()), "Device description not contains search_value"
-    logger.info("'test_rozetka_correct_search' test was successfully finished")
+    logger.info("'test_rozetka_correct_search' was successfully finished")
 
 
 def test_rozetka_incorrect_search(driver):
@@ -58,7 +55,7 @@ def test_rozetka_incorrect_search(driver):
     logger.info("Verify not_found_text is present")
     assert driver.find_element(By.XPATH, "//span[@class='ng-star-inserted']").is_displayed(), \
         "Wrong request text isn`t presented"
-    logger.info("'test_rozetka_incorrect_search' test was successfully finished")
+    logger.info("'test_rozetka_incorrect_search' was successfully finished")
 
 
 def attach_screenshot(driver):
