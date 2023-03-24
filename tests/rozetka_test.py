@@ -31,9 +31,27 @@ def test_test(driver):
     assert  True
     logger.info("'test_test' test was successfully finished")
 
-
-
-
+def test_rozetka(driver):
+    logger.info("Attaching labels, artifacts and artifacts references to test")
+    attach_test_label("TestLabel", "Rozetka")
+    attach_test_run_artifact_reference("Rozetka", "https://rozetka.com.ua/ua/")
+    logger.info("Navigating to url: " + url)
+    driver.get(url=url)
+    attach_screenshot(driver)
+    logger.info("Performing search with value: " + search_value)
+    time.sleep(3)
+    driver.find_element(By.XPATH, "//input[contains(@class, 'search-form__input')]").send_keys(search_value)
+    time.sleep(5)
+    driver.find_element(By.XPATH, "//button[contains(@class, 'search-form__submit')]").click()
+    attach_screenshot(driver)
+    time.sleep(10)
+    logger.info("Verify first search result contains: '" + search_value + "'")
+    xpath = f"//span[@class='goods-tile__title'][{1}]"
+    goods_title_text = driver.find_element(By.XPATH, xpath).text
+    logger.info(goods_title_text)
+    assert str(goods_title_text.lower()).__contains__(
+        search_value.lower()), "Device description not contains search_value"
+    logger.info("'test_rozetka' test was successfully finished")
 
 
 def attach_screenshot(driver):
