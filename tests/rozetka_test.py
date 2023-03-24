@@ -34,7 +34,10 @@ def test_rozetka(driver):
     logger.info("Performing search with value: " + search_value)
     search_field: WebElement = driver.find_element(by=By.XPATH, value="//input[contains(@class, 'search-form__input')]")
     search_field.send_keys(search_value)
-    search_field.send_keys(Keys.ENTER)
+    search_button: WebElement = driver.find_element(by=By.XPATH,
+                                                    value="//button[contains(@class, 'search-form__submit')]")
+    search_button.click()
+    # search_field.send_keys(Keys.ENTER)
     attach_screenshot(driver)
     logger.info("Verify first search result contains: '" + search_value + "'")
     first_link: WebElement = driver.find_element(by=By.XPATH, value="//span[@class='goods-tile__title'][1]")
