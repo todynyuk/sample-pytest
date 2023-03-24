@@ -32,7 +32,7 @@ def test_rozetka(driver):
     driver.get(url=url)
     attach_screenshot(driver)
     logger.info("Performing search with value: " + search_value)
-    search_field: WebElement = driver.find_element(by=By.XPATH, value="//input[@name='search']")
+    search_field: WebElement = driver.find_element(by=By.XPATH, value="//input[contains(@class, 'search-form__input')]")
     search_field.send_keys(search_value)
     search_field.send_keys(Keys.ENTER)
     attach_screenshot(driver)
