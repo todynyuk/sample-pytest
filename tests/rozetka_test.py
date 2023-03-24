@@ -32,17 +32,15 @@ def test_rozetka(driver):
     driver.get(url=url)
     attach_screenshot(driver)
     logger.info("Performing search with value: " + search_value)
-    search_field: WebElement = driver.find_element(by=By.XPATH, value="//input[contains(@class, 'search-form__input')]")
-    search_field.send_keys(search_value)
-    search_button: WebElement = driver.find_element(by=By.XPATH,
-                                                    value="//button[contains(@class, 'search-form__submit')]")
-    search_button.click()
-    # search_field.send_keys(Keys.ENTER)
+    driver.find_element(By.XPATH, "//input[contains(@class, 'search-form__input')]").send_keys(search_value)
+    driver.find_element(By.XPATH, "//button[contains(@class, 'search-form__submit')]").click()
     attach_screenshot(driver)
     logger.info("Verify first search result contains: '" + search_value + "'")
-    first_link: WebElement = driver.find_element(by=By.XPATH, value="//span[@class='goods-tile__title'][1]")
-    logger.info(first_link.text)
-    assert first_link.text.lower().find(search_value.lower()) != -1
+    xpath = f"//span[@class='goods-tile__title'][{1}]"
+    goods_title_text = driver.find_element(By.XPATH, xpath).text
+    logger.info(goods_title_text)
+    assert str(goods_title_text.lower()).__contains__(
+        search_value.lower()), "Device description not contains search_value"
     logger.info("'test_rozetka' test was successfully finished")
 
 
