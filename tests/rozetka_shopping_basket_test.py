@@ -1,4 +1,5 @@
 import logging
+import time
 
 from pytest_zebrunner import attach_test_run_label, attach_test_run_artifact_reference, attach_test_label, \
     attach_test_screenshot
@@ -36,7 +37,10 @@ def testAddGoodsInBasketAndCheckItEmpty(driver):
                         f"//a[contains(@class,'tile-cats__heading') and contains(.,'{'Мобільні'}')]").click()
     attach_screenshot(driver)
     driver.execute_script("window.scrollTo(0, 250)")
-    driver.find_element(By.XPATH, f"//button[contains(@class,'buy-button')][{1}]").click()
+    time.sleep(2)
+    element = driver.find_element(By.XPATH, f"//button[contains(@class,'buy-button')][{1}]")
+    element.click()
+    time.sleep(3)
     attach_screenshot(driver)
     driver.find_element(By.XPATH, "//li[contains(@class,'cart')]/*/button[contains(@class,'header__button')]").click()
     attach_screenshot(driver)
