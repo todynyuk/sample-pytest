@@ -1,4 +1,5 @@
 import logging
+import time
 
 from pytest_zebrunner import attach_test_run_label, attach_test_run_artifact_reference, attach_test_label, \
     attach_test_screenshot
@@ -33,8 +34,10 @@ def test_rozetka(driver):
     attach_screenshot(driver)
     logger.info("Performing search with value: " + search_value)
     driver.find_element(By.XPATH, "//input[contains(@class, 'search-form__input')]").send_keys(search_value)
+    time.sleep(3)
     driver.find_element(By.XPATH, "//button[contains(@class, 'search-form__submit')]").click()
     attach_screenshot(driver)
+    time.sleep(5)
     logger.info("Verify first search result contains: '" + search_value + "'")
     xpath = f"//span[@class='goods-tile__title'][{1}]"
     goods_title_text = driver.find_element(By.XPATH, xpath).text
