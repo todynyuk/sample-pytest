@@ -37,7 +37,7 @@ def test_rozetka_correct_search(driver):
     click_search_button(driver)
     attach_screenshot(driver)
     logger.info("Verify first search result contains: '" + search_value + "'")
-    assert verify_is_search_brand_present_in_goods_title(search_value), "Search text not" \
+    assert verify_is_search_brand_present_in_goods_title(driver,search_value), "Search text not" \
                                                                         " contains in all " \
                                                                         "goods title texts"
     logger.info("'test_rozetka_correct_search' was successfully finished")

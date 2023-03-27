@@ -15,7 +15,7 @@ def getDevicePriceText(driver, index):
     return int(re.sub('\D', '', driver.find_element(By.XPATH, xpath).text))
 
 
-def set_goods_count_value(self, driver, count):
+def set_goods_count_value(driver, count):
     universal_price_input_value = driver.find_element(By.XPATH,
                                                       "//input[@data-testid='cart-counter-input']")
     universal_price_input_value.clear()
