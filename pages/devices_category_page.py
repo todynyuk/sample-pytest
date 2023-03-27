@@ -46,7 +46,8 @@ def choose_ram_сapacity(driver, ram_capacity):
 
 
 def click_check_box_filter(driver, param):
-    element = driver.find_element(By.XPATH, f"//a[contains(@data-id,'{param}')]").click()
+    element = driver.find_element(By.XPATH, f"//a[contains(@data-id,'{param}')]")
+    driver.execute_script('arguments[0].click()', element)
     time.sleep(3)
 
 
