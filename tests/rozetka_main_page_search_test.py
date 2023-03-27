@@ -55,7 +55,7 @@ def test_rozetka_incorrect_search(driver):
     click_search_button(driver)
     attach_screenshot(driver)
     logger.info("Verify not_found_text is present")
-    assert verify_wrong_search_request(), "Wrong request text isn`t presented"
+    assert verify_wrong_search_request(driver), "Wrong request text isn`t presented"
     logger.info("'test_rozetka_incorrect_search' was successfully finished")
 
 

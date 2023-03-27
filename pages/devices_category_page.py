@@ -16,7 +16,7 @@ def get_goods_title_text_by_index(driver, index):
     return goods_title_text
 
 
-def clickBuyButtonByIndex(self, driver, index):
+def clickBuyButtonByIndex(driver, index):
     driver.execute_script("window.scrollTo(0, 250)")
     time.sleep(2)
     element = driver.find_element(By.XPATH, f"//button[contains(@class,'buy-button')][{index}]")
