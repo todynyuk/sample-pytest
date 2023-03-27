@@ -5,7 +5,6 @@ from pytest_zebrunner import attach_test_run_label, attach_test_run_artifact_ref
     attach_test_screenshot
 from pytest_zebrunner.zebrunner_logging import ZebrunnerHandler
 from pytest_zebrunner import CurrentTestRun
-from selenium.webdriver.common.by import By
 
 from pages.devices_category_page import getSmartphonePriceText, get_goods_title_text_by_index, clickBuyButtonByIndex, \
     get_goods_description_text_by_index, clickOnShoppingBasketButton

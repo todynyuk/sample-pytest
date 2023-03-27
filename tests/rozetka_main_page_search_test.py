@@ -6,8 +6,7 @@ from pytest_zebrunner.zebrunner_logging import ZebrunnerHandler
 from pytest_zebrunner import CurrentTestRun
 from selenium.webdriver.common.by import By
 
-from pages.main_page import set_search_input, click_search_button, verify_is_search_brand_present_in_goods_title, \
-    verify_wrong_search_request
+from pages.main_page import set_search_input, click_search_button, verify_wrong_search_request
 
 logger = logging.getLogger(__name__)
 logger.addHandler(ZebrunnerHandler())
