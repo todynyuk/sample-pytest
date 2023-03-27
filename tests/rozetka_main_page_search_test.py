@@ -34,7 +34,7 @@ def test_rozetka_correct_search(driver):
     attach_screenshot(driver)
     logger.info("Performing search with value: " + search_value)
     set_search_input(driver, search_value)
-    click_search_button()
+    click_search_button(driver)
     attach_screenshot(driver)
     logger.info("Verify first search result contains: '" + search_value + "'")
     assert verify_is_search_brand_present_in_goods_title(search_value), "Search text not" \
@@ -52,7 +52,7 @@ def test_rozetka_incorrect_search(driver):
     attach_screenshot(driver)
     logger.info("Performing search with value: " + "hgvhvg")
     set_search_input(driver, "hgvhvg")
-    click_search_button()
+    click_search_button(driver)
     attach_screenshot(driver)
     logger.info("Verify not_found_text is present")
     assert verify_wrong_search_request(), "Wrong request text isn`t presented"

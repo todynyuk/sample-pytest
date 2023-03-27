@@ -1,6 +1,31 @@
 from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 import time
+import re
+
+
+def get_goods_description_text_by_index(driver, index):
+    xpath = f"//a[@data-testid='title'][{index}]"
+    goods_title_text = driver.find_element(By.XPATH, xpath).text
+    return goods_title_text
+
+
+def getDevicePriceText(driver, index):
+    xpath = f"//p[@data-testid='cost'][{index}]"
+    return int(re.sub('\D', '', driver.find_element(By.XPATH, xpath).text))
+
+
+def set_goods_count_value(self, driver, count):
+    universal_price_input_value = driver.find_element(By.XPATH,
+                                                      "//input[@data-testid='cart-counter-input']")
+    universal_price_input_value.clear()
+    time.sleep(2)
+    universal_price_input_value.send_keys(count)
+
+
+def getSumPriceText(driver):
+    return int(
+        re.sub('\D', '', driver.find_element(By.XPATH, "//div[@class='cart-receipt__sum-price']//span").text))
 
 
 def isBasketEmptyStatusTextPresent(driver):
