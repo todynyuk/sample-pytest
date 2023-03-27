@@ -23,12 +23,6 @@ def get_goods_title_text(driver):
     return goods_title_texts
 
 
-def verify_is_search_brand_present_in_goods_title(driver, brand):
-    goods_title_texts = [x.lower() for x in get_goods_title_text(driver)]
-    res = all([ele for ele in str(brand).lower() if (ele in goods_title_texts)])
-    return res
-
-
 def verify_wrong_search_request(driver):
     time.sleep(2)
     return driver.find_element(By.XPATH, "//span[@class='ng-star-inserted']").is_displayed()
