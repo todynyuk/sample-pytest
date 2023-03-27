@@ -6,6 +6,9 @@ from pytest_zebrunner.zebrunner_logging import ZebrunnerHandler
 from pytest_zebrunner import CurrentTestRun
 from selenium.webdriver.common.by import By
 
+from pages.main_page import set_search_input, click_search_button, verify_is_search_brand_present_in_goods_title, \
+    verify_wrong_search_request
+
 logger = logging.getLogger(__name__)
 logger.addHandler(ZebrunnerHandler())
 logger.setLevel(logging.INFO)
@@ -30,14 +33,13 @@ def test_rozetka_correct_search(driver):
     driver.get(url=url)
     attach_screenshot(driver)
     logger.info("Performing search with value: " + search_value)
-    driver.find_element(By.XPATH, "//input[contains(@class, 'search-form__input')]").send_keys(search_value)
-    driver.find_element(By.XPATH, "//button[contains(@class, 'search-form__submit')]").click()
+    set_search_input(search_value)
+    click_search_button()
     attach_screenshot(driver)
     logger.info("Verify first search result contains: '" + search_value + "'")
-    goods_title_text = driver.find_element(By.XPATH, f"//span[@class='goods-tile__title'][{1}]").text
-    logger.info(goods_title_text)
-    assert str(goods_title_text.lower()).__contains__(
-        search_value.lower()), "Device description not contains search_value"
+    assert verify_is_search_brand_present_in_goods_title(search_value), "Search text not" \
+                                                                        " contains in all " \
+                                                                        "goods title texts"
     logger.info("'test_rozetka_correct_search' was successfully finished")
 
 
@@ -49,12 +51,11 @@ def test_rozetka_incorrect_search(driver):
     driver.get(url=url)
     attach_screenshot(driver)
     logger.info("Performing search with value: " + "hgvhvg")
-    driver.find_element(By.XPATH, "//input[contains(@class, 'search-form__input')]").send_keys("hgvhvg")
-    driver.find_element(By.XPATH, "//button[contains(@class, 'search-form__submit')]").click()
+    set_search_input("hgvhvg")
+    click_search_button()
     attach_screenshot(driver)
     logger.info("Verify not_found_text is present")
-    assert driver.find_element(By.XPATH, "//span[@class='ng-star-inserted']").is_displayed(), \
-        "Wrong request text isn`t presented"
+    assert verify_wrong_search_request(), "Wrong request text isn`t presented"
     logger.info("'test_rozetka_incorrect_search' was successfully finished")
 
 
