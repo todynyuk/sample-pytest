@@ -24,10 +24,8 @@ def get_goods_title_text(driver):
 
 
 def verify_is_search_brand_present_in_goods_title(driver, brand):
-    time.sleep(3)
     goods_title_texts = [x.lower() for x in get_goods_title_text(driver)]
     res = all([ele for ele in str(brand).lower() if (ele in goods_title_texts)])
-    time.sleep(3)
     return res
 
 
