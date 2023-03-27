@@ -19,13 +19,15 @@ def get_goods_title_text(driver):
     buffer = driver.find_element(By.XPATH, "//span[@class='goods-tile__title']")
     goods_title_texts = []
     for elem in buffer:
-        goods_title_texts.append(elem.text)
+        goods_title_texts.append(str(elem.text).lower())
     return goods_title_texts
 
 
 def verify_is_search_brand_present_in_goods_title(driver, brand):
+    time.sleep(3)
     goods_title_texts = [x.lower() for x in get_goods_title_text(driver)]
     res = all([ele for ele in str(brand).lower() if (ele in goods_title_texts)])
+    time.sleep(3)
     return res
 
 
