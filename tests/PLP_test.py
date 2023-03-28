@@ -28,7 +28,7 @@ CurrentTestRun.set_locale("en_US")
 CurrentTestRun.set_build("TR build version")
 url = "https://rozetka.com.ua/ua/"
 
-
+@pytest.mark.skip(reason="Rozetka have problem with sorting by price")
 def testFilterByBrandNameMaxCustomPriceAndAvailable(driver):
     logger.info("Attaching labels, artifacts and artifacts references to test")
     attach_test_label("TestLabel", "Rozetka")

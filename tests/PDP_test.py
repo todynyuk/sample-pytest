@@ -44,7 +44,7 @@ def testItemRamAndPrice(driver):
     smartphone_price = getSmartphonePriceText(driver, 1)
     clickLinkMoreAboutDevice(driver, 1)
     attach_screenshot(driver)
-    logger.info("Use filter(RAM capacity): '" + 12 + "'")
+    logger.info("Use filter(RAM capacity): '" + "12" + "'")
     short_characteristics = verify_device_short_characteristic(driver, 12)
     attach_screenshot(driver)
     chosen_device_price = get_chosen_product_price(driver)
