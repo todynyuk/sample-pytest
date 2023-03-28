@@ -1,4 +1,5 @@
 import logging
+import time
 
 from pytest_zebrunner import attach_test_run_label, attach_test_run_artifact_reference, attach_test_label
 from pytest_zebrunner.zebrunner_logging import ZebrunnerHandler
@@ -40,6 +41,7 @@ def testItemRamAndPrice(driver):
     attach_screenshot(driver)
     logger.info("Use filter(colour): '" + "Синій" + "'")
     click_check_box_filter(driver, "Синій")
+    time.sleep(5)
     attach_screenshot(driver)
     smartphone_price = getSmartphonePriceText(driver, 1)
     clickLinkMoreAboutDevice(driver, 1)

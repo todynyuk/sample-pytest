@@ -113,7 +113,7 @@ def clickUniversalShowCheckBoxButton(driver, param):
 def clickLinkMoreAboutDevice(driver, index):
     driver.execute_script("window.scrollTo(0, 220)")
     xpath = f"//a[@class='goods-tile__heading ng-star-inserted'][{index}]"
-    driver.execute_script('arguments[0].click()', xpath)
+    driver.find_element(By.XPATH, xpath).click()
 
 
 def clickDropdownOption(driver, param):
