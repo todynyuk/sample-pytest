@@ -1,4 +1,3 @@
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 import time
 import re
@@ -36,8 +35,7 @@ def get_goods_description_text_by_index(driver, index):
 
 
 def clickOnShoppingBasketButton(driver):
-    shopping_basket_button = driver.find_element(By.XPATH,
-                                                 "//li[contains(@class,'cart')]/*/button[contains(@class,'header__button')]")
+    shopping_basket_button = driver.find_element(By.XPATH, DeviceCategoryLocators.SHOPPING_BASKET_BUTTON)
     shopping_basket_button.click()
     time.sleep(3)
 
@@ -74,23 +72,15 @@ def clear_and_set_sorting_price(driver, price_input_type, price_value):
 
 
 def click_ok_button(driver):
-    driver.find_element(By.XPATH, "//button[contains(@class,'slider-filter__button')]").click()
+    driver.find_element(By.XPATH, DeviceCategoryLocators.OK_BUTTON).click()
     time.sleep(3)
 
 
 def get_prices_list(driver):
     choosen_price_devices = []
-    for elem in driver.find_elements(By.XPATH, "//span[@class='goods-tile__price-value']"):
+    for elem in driver.find_elements(By.XPATH, DeviceCategoryLocators.GOODS_TITLE_TEXT):
         choosen_price_devices.append(re.sub('\D', '', elem.text))
     return choosen_price_devices
-
-
-def click_check_box_filter(driver, param):
-    element = driver.find_element(By.XPATH, f"//a[contains(@data-id,'{param}')]")
-    action = ActionChains(driver)
-    action.move_to_element(element).perform()
-    element.click()
-    time.sleep(3)
 
 
 def check_is_all_goods_prices_less_than_choosen(driver, chosen_max_price):
@@ -136,7 +126,7 @@ def clickDropdownOption(driver, param):
 
 def isAllGoodsSortedFromLowToHighPrice(driver):
     low_to_hight_price_list = []
-    priceItemText = driver.find_elements(By.XPATH, "//span[@class='goods-tile__price-value']")
+    priceItemText = driver.find_elements(By.XPATH, DeviceCategoryLocators.DEVICE_PRICES)
     for i in priceItemText:
         low_to_hight_price_list.append(re.sub('\D', '', i.text))
     return all(low_to_hight_price_list[j] <= low_to_hight_price_list[j + 1] for j in
@@ -145,7 +135,7 @@ def isAllGoodsSortedFromLowToHighPrice(driver):
 
 def isAllGoodsSortedFromHighToLowPrice(driver):
     low_to_hight_price_list = []
-    priceItemText = driver.find_elements(By.XPATH, "//span[@class='goods-tile__price-value']")
+    priceItemText = driver.find_elements(By.XPATH, DeviceCategoryLocators.DEVICE_PRICES)
     for i in priceItemText:
         low_to_hight_price_list.append(re.sub('\D', '', i.text))
     return all(low_to_hight_price_list[j] >= low_to_hight_price_list[j + 1] for j in

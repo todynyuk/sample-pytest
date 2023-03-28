@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 import time
 import re
 
+from locators.elements_page_locators import ShoppingBasketLocators
+
 
 def get_goods_description_text_by_index(driver, index):
     xpath = f"//a[@data-testid='title'][{index}]"
@@ -25,13 +27,13 @@ def set_goods_count_value(driver, count):
 
 def getSumPriceText(driver):
     return int(
-        re.sub('\D', '', driver.find_element(By.XPATH, "//div[@class='cart-receipt__sum-price']//span").text))
+        re.sub('\D', '', driver.find_element(By.XPATH, ShoppingBasketLocators.SUM_PRICE_TEXT).text))
 
 
 def isBasketEmptyStatusTextPresent(driver):
     try:
         time.sleep(2)
-        driver.find_element(By.XPATH, "//h4[@class='cart-dummy__heading']")
+        driver.find_element(By.XPATH, ShoppingBasketLocators.EMPTY_STATUS_TEXT)
         time.sleep(2)
     except NoSuchElementException:
         time.sleep(2)
@@ -41,6 +43,6 @@ def isBasketEmptyStatusTextPresent(driver):
 
 def getGoodsInCartListSize(driver):
     goods_in_cart_title_price = []
-    for elem in driver.find_elements(By.XPATH, "//p[@data-testid='cost']"):
+    for elem in driver.find_elements(By.XPATH, ShoppingBasketLocators.GOODS_IN_CART_TITLE_PRICE):
         goods_in_cart_title_price.append(elem.text)
     return goods_in_cart_title_price.__len__()

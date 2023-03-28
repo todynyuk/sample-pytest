@@ -29,3 +29,4 @@ class ShoppingBasketLocators:
     SUM_PRICE_TEXT = "//div[@class='cart-receipt__sum-price']//span"
     EMPTY_STATUS_TEXT = "//h4[@class='cart-dummy__heading']"
     GOODS_IN_CART_TITLE_PRICE = "//p[@data-testid='cost']"
+
