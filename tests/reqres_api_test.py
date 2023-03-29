@@ -1,6 +1,7 @@
 import logging
 import time
 
+import requests
 from pytest_zebrunner import attach_test_run_label, attach_test_run_artifact_reference, attach_test_label
 from pytest_zebrunner.zebrunner_logging import ZebrunnerHandler
 from pytest_zebrunner import CurrentTestRun
@@ -26,7 +27,7 @@ def test_get_list_users(driver):
     attach_test_label("TestLabel", "ReqresAPI")
     attach_test_run_artifact_reference("ReqresAPI", "https://reqres.in/")
     logger.info("Navigating to url: " + "https://reqres.in/api/users?page=2")
-    response = ReqresInApi.get_list_users(driver)
+    response = requests.get(driver.get(url="https://reqres.in/api/users?page=2"))
     request_method = response.request.method
     assert request_method == 'GET'
     assert Validations.valid_status_code(response, 200), "Status code not as expected."
