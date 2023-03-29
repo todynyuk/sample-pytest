@@ -26,6 +26,6 @@ def test_request_response(driver):
     attach_test_run_artifact_reference("Zebrunner", "https://solvdinternal.zebrunner.com")
     logger.info("Navigating to url: " + url)
     driver.get(url=url)
-    response = requests.get()
+    response = requests.get(url)
     assert response.ok, "Response not as expected."
     logger.info("'test_request_response' was successfully finished")
