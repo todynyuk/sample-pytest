@@ -25,6 +25,7 @@ def test_get_list_users(driver):
     attach_test_label("TestLabel", "ReqresAPI")
     attach_test_run_artifact_reference("ReqresAPI", "https://reqres.in/")
     logger.info("Navigating to url: " + "https://reqres.in/api/users?page=2")
+    driver.get(url="https://reqres.in/api/users?page=2")
     response = get_list_users()
     request_method = response.request.method
     assert request_method == 'GET'
