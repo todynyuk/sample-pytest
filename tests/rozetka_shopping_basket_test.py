@@ -12,6 +12,7 @@ from pages.main_page import click_universal_category_link
 from pages.shopping_basket_page import isBasketEmptyStatusTextPresent, getGoodsInCartListSize, getDevicePriceText, \
     set_goods_count_value, getSumPriceText
 from pages.subcategory_page import click_universal_subcategory_menu_link
+from utils.attachments import attach_screenshot
 
 logger = logging.getLogger(__name__)
 logger.addHandler(ZebrunnerHandler())
@@ -80,6 +81,4 @@ def testAddGoodsInBasketAndCheckItEmpty(driver):
     logger.info("'testAddGoodsInBasketAndCheckItEmpty' was successfully finished")
 
 
-def attach_screenshot(driver):
-    driver.save_screenshot("screenshot.png")
-    attach_test_screenshot("screenshot.png")
+

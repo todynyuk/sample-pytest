@@ -7,6 +7,7 @@ from pytest_zebrunner import CurrentTestRun
 from selenium.webdriver.common.by import By
 
 from pages.main_page import set_search_input, click_search_button, verify_wrong_search_request
+from utils.attachments import attach_screenshot
 
 logger = logging.getLogger(__name__)
 logger.addHandler(ZebrunnerHandler())
@@ -59,6 +60,4 @@ def test_rozetka_incorrect_search(driver):
     logger.info("'test_rozetka_incorrect_search' was successfully finished")
 
 
-def attach_screenshot(driver):
-    driver.save_screenshot("screenshot.png")
-    attach_test_screenshot("screenshot.png")
+
