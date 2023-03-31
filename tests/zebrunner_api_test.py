@@ -17,15 +17,14 @@ attach_test_run_artifact_reference("Zebrunner", "https://solvdinternal.zebrunner
 
 CurrentTestRun.set_locale("en_US")
 CurrentTestRun.set_build("TR build version")
-CurrentTestRun.set_platform("API")
 
 url = "https://solvdinternal.zebrunner.com"
 
 
 def test_request_response(driver):
     logger.info("Attaching labels, artifacts and artifacts references to test")
-    attach_test_label("TestLabel", "Zebrunner")
-    attach_test_run_artifact_reference("Zebrunner", "https://solvdinternal.zebrunner.com")
+    attach_test_label("TestLabel", "ZebrunnerAPI")
+    attach_test_run_artifact_reference("ZebrunnerAPI", "https://solvdinternal.zebrunner.com")
     logger.info("Navigating to url: " + url)
     driver.get(url=url)
     attach_screenshot(driver)
