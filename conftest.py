@@ -1,9 +1,7 @@
 import os
 
 import pytest
-from requests import Session
 from selenium import webdriver
-from pytest_zebrunner import CurrentTestRun
 
 
 @pytest.fixture(scope="function")
@@ -27,7 +25,3 @@ def driver():
 
     driver.quit()
 
-
-@pytest.hookimpl(trylast=True)
-def pytest_sessionstart(session: Session) -> None:
-    CurrentTestRun.set_platform("API")

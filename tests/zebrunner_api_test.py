@@ -17,6 +17,7 @@ attach_test_run_artifact_reference("Zebrunner", "https://solvdinternal.zebrunner
 
 CurrentTestRun.set_locale("en_US")
 CurrentTestRun.set_build("TR build version")
+CurrentTestRun.set_platform("API")
 
 url = "https://solvdinternal.zebrunner.com"
 
