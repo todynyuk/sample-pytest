@@ -23,7 +23,7 @@ URL = "https://todo.pixegami.io/"
 class Test_API:
 
     def test_create_task(self, driver):
-        payload = new_task_payload(self)
+        payload = new_task_payload()
         attach_screenshot(driver)
         create_task_response = create_task(self, payload, URL)
         assert create_task_response.status_code == 200, \
@@ -41,7 +41,7 @@ class Test_API:
         logger.info("'test_create_task' was successfully finished")
 
     def test_update_task(self, driver):
-        payload = new_task_payload(self)
+        payload = new_task_payload()
         attach_screenshot(driver)
         create_task_response = create_task(self, payload, URL)
         assert create_task_response.status_code == 200, \
@@ -66,7 +66,7 @@ class Test_API:
 
     def test_list_tasks(self, driver):
         count = 3
-        payload = new_task_payload(self)
+        payload = new_task_payload()
         attach_screenshot(driver)
         for i in range(count):
             create_task_response = create_task(self, payload, URL)
