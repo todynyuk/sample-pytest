@@ -1,14 +1,29 @@
+from pytest_zebrunner import attach_test_run_label, attach_test_run_artifact_reference, CurrentTestRun
+
 from api_requests.api_requests import ReqresInApi
 from api_validations.api_validations import Validations
 import logging
 import pytest
+from pytest_zebrunner.zebrunner_logging import ZebrunnerHandler
+from utils.attachments import attach_screenshot
 
-logger = logging.getLogger("api")
+logger = logging.getLogger(__name__)
+logger.addHandler(ZebrunnerHandler())
+logger.setLevel(logging.INFO)
+
+attach_test_run_label("TestRunLabelRunName", "PyTest")
+attach_test_run_label("TestRunLabelResourceName", "ReqresAPI")
+
+attach_test_run_artifact_reference("ReqresAPI", "https://reqres.in/")
+
+CurrentTestRun.set_locale("en_US")
+CurrentTestRun.set_build("TR build version")
 
 
 class TestSuitPositive:
-    def test_get_list_users(self):
+    def test_get_list_users(self, driver):
         response = ReqresInApi.get_list_users()
+        attach_screenshot(driver)
         request_method = response.request.method
         assert request_method == 'GET'
         assert Validations.valid_status_code(response, 200), "Status code not as expected."
@@ -19,8 +34,9 @@ class TestSuitPositive:
     parameters = [(2), (3)]
 
     @pytest.mark.parametrize("user_id", parameters)
-    def test_get_single_user(self, user_id):
+    def test_get_single_user(self, driver, user_id):
         response = ReqresInApi.get_single_user(user_id)
+        attach_screenshot(driver)
         request_method = response.request.method
         assert request_method == 'GET'
         assert Validations.valid_status_code(response, 200), \
@@ -32,8 +48,9 @@ class TestSuitPositive:
     parameters = [("Matthew", "programmer"), ("Steve", "designer"), ("Josh", "QA engineer")]
 
     @pytest.mark.parametrize("name,job", parameters)
-    def test_create_new_user(self, name, job):
+    def test_create_new_user(self, driver, name, job):
         response = ReqresInApi.create_new_user(name, job)
+        attach_screenshot(driver)
         request_method = response.request.method
         assert request_method == 'POST'
         assert Validations.valid_status_code(response, 201), \
@@ -48,8 +65,9 @@ class TestSuitPositive:
                   ("Mike", "Project Manager", 5)]
 
     @pytest.mark.parametrize("name,job,user_id", parameters)
-    def test_update_user(self, name, job, user_id):
+    def test_update_user(self, driver, name, job, user_id):
         response = ReqresInApi.update_user(name, job, user_id)
+        attach_screenshot(driver)
         request_method = response.request.method
         assert request_method == 'PUT'
         assert Validations.valid_status_code(response, 200), \
@@ -63,8 +81,9 @@ class TestSuitPositive:
     parameters = [(2), (3)]
 
     @pytest.mark.parametrize("user_id", parameters)
-    def test_delete_user(self, user_id):
+    def test_delete_user(self, driver, user_id):
         response = ReqresInApi.delete_user(user_id)
+        attach_screenshot(driver)
         request_method = response.request.method
         assert request_method == 'DELETE'
         assert Validations.valid_status_code(response, 204), \
@@ -76,8 +95,9 @@ class TestSuitPositive:
     parameters = [("janet.weaver@reqres.in", "ReqRes"), ("emma.wong@reqres.in", "Curly")]
 
     @pytest.mark.parametrize("username,password", parameters)
-    def test_registration_user(self, username, password):
+    def test_registration_user(self, driver, username, password):
         response = ReqresInApi.register(username, password)
+        attach_screenshot(driver)
         request_method = response.request.method
         assert request_method == 'POST'
         assert Validations.valid_status_code(response, 200), \
@@ -91,8 +111,9 @@ class TestSuitPositive:
     parameters = [("janet.weaver@reqres.in", "ReqRes"), ("emma.wong@reqres.in", "Curly")]
 
     @pytest.mark.parametrize("username,password", parameters)
-    def test_login_user(self, username, password):
+    def test_login_user(self, driver, username, password):
         response = ReqresInApi.login(username, password)
+        attach_screenshot(driver)
         request_method = response.request.method
         assert request_method == 'POST'
         assert Validations.valid_status_code(response, 200), \
@@ -106,15 +127,17 @@ class TestSuitPositive:
     parameters = [(2), (3)]
 
     @pytest.mark.parametrize("user_id", parameters)
-    def test_get_user_avatar(self, user_id):
+    def test_get_user_avatar(self, driver, user_id):
         response = ReqresInApi.get_single_user(user_id)
+        attach_screenshot(driver)
         request_method = response.request.method
         assert request_method == 'GET'
         assert response.json()['data']['avatar'] == f'https://reqres.in/img/faces/{user_id}-image.jpg', \
             'Avatar is not ok'
 
-    def test_list_resource(self):
+    def test_list_resource(self, driver):
         response = ReqresInApi.get_list_resource()
+        attach_screenshot(driver)
         request_method = response.request.method
         assert request_method == 'GET'
         assert response.status_code == 200
@@ -126,8 +149,9 @@ class TestSuitPositive:
     parameters = [(2, "fuchsia rose"), (4, "aqua sky"), (5, "tigerlily")]
 
     @pytest.mark.parametrize("resource_id,name", parameters)
-    def test_get_single_resource(self, resource_id, name):
+    def test_get_single_resource(self, driver, resource_id, name):
         response = ReqresInApi.get_resource(resource_id)
+        attach_screenshot(driver)
         request_method = response.request.method
         assert request_method == 'GET'
         assert response.status_code == 200

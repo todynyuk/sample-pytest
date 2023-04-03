@@ -1,17 +1,32 @@
+from pytest_zebrunner import attach_test_run_label, attach_test_run_artifact_reference, CurrentTestRun
+
 from api_requests.api_requests import ReqresInApi
 from api_validations.api_validations import Validations
 import logging
 import pytest
+from pytest_zebrunner.zebrunner_logging import ZebrunnerHandler
+from utils.attachments import attach_screenshot
 
-logger = logging.getLogger("api")
+logger = logging.getLogger(__name__)
+logger.addHandler(ZebrunnerHandler())
+logger.setLevel(logging.INFO)
+
+attach_test_run_label("TestRunLabelRunName", "PyTest")
+attach_test_run_label("TestRunLabelResourceName", "ReqresAPI")
+
+attach_test_run_artifact_reference("ReqresAPI", "https://reqres.in/")
+
+CurrentTestRun.set_locale("en_US")
+CurrentTestRun.set_build("TR build version")
 
 
 class TestSuitNegative:
     parameters = [(25), (35)]
 
     @pytest.mark.parametrize("user_id", parameters)
-    def test_get_invalid_single_user(self, user_id):
+    def test_get_invalid_single_user(self, driver, user_id):
         response = ReqresInApi.get_single_user(user_id)
+        attach_screenshot(driver)
         request_method = response.request.method
         assert request_method == 'GET'
         assert Validations.valid_status_code(response, 404), \
@@ -23,8 +38,9 @@ class TestSuitNegative:
     parameters = [("", "ReqRes"), ("", "Curly")]
 
     @pytest.mark.parametrize("username,password", parameters)
-    def test_registration_without_email(self, username, password):
+    def test_registration_without_email(self, driver, username, password):
         response = ReqresInApi.register(username, password)
+        attach_screenshot(driver)
         request_method = response.request.method
         assert request_method == 'POST'
         assert Validations.valid_status_code(response, 400), \
@@ -40,8 +56,9 @@ class TestSuitNegative:
     parameters = [("janet.weaver@reqres.in", ""), ("emma.wong@reqres.in", "")]
 
     @pytest.mark.parametrize("username,password", parameters)
-    def test_registration_without_password(self, username, password):
+    def test_registration_without_password(self, driver, username, password):
         response = ReqresInApi.register(username, password)
+        attach_screenshot(driver)
         request_method = response.request.method
         assert request_method == 'POST'
         assert Validations.valid_status_code(response, 400), \
@@ -57,8 +74,9 @@ class TestSuitNegative:
     parameters = [("", "ReqRes"), ("", "Curly")]
 
     @pytest.mark.parametrize("username,password", parameters)
-    def test_login_without_email(self, username, password):
+    def test_login_without_email(self, driver, username, password):
         response = ReqresInApi.login(username, password)
+        attach_screenshot(driver)
         request_method = response.request.method
         assert request_method == 'POST'
         assert Validations.valid_status_code(response, 400), \
@@ -74,8 +92,9 @@ class TestSuitNegative:
     parameters = [("janet.weaver@reqres.in", ""), ("emma.wong@reqres.in", "")]
 
     @pytest.mark.parametrize("username,password", parameters)
-    def test_login_without_password(self, username, password):
+    def test_login_without_password(self, driver, username, password):
         response = ReqresInApi.login(username, password)
+        attach_screenshot(driver)
         request_method = response.request.method
         assert request_method == 'POST'
         assert Validations.valid_status_code(response, 400), \
@@ -91,8 +110,9 @@ class TestSuitNegative:
     parameters = [("123.weaver@reqres.in", "ReqRes"), ("emma150.wong@reqres.in", "Curly")]
 
     @pytest.mark.parametrize("username,password", parameters)
-    def test_login_with_wrong_email(self, username, password):
+    def test_login_with_wrong_email(self, driver, username, password):
         response = ReqresInApi.login(username, password)
+        attach_screenshot(driver)
         request_method = response.request.method
         assert request_method == 'POST'
         assert Validations.valid_status_code(response, 400), \

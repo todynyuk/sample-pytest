@@ -1,5 +1,19 @@
 from api_requests.api_clients_requests import get_token
 from api_requests.api_orders_requests import add_order, edit_order, get_order, delete_order, get_orders
+import logging
+
+from pytest_zebrunner import attach_test_run_label, CurrentTestRun
+
+from pytest_zebrunner.zebrunner_logging import ZebrunnerHandler
+
+logger = logging.getLogger(__name__)
+logger.addHandler(ZebrunnerHandler())
+logger.setLevel(logging.INFO)
+
+attach_test_run_label("TestRunLabelRunName", "PyTest")
+
+CurrentTestRun.set_locale("en_US")
+CurrentTestRun.set_build("TR build version")
 
 
 class TestOrders:
@@ -11,6 +25,7 @@ class TestOrders:
         assert response.status_code == 404, \
             f"Error: status code is not correct. Expected: 404, Actual: {response.status_code}"
         assert response.json()['error'] == 'This book is not in stock. Try again later.', 'The error is incorrect'
+        logger.info("'test_add_order_book_out_of_stock' was successfully finished")
 
     def test_add_valid_order(self):
         response = add_order(self.token, 1, 'Test')
@@ -18,6 +33,7 @@ class TestOrders:
             f"Error: status code is not correct. Expected: 201, Actual: {response.status_code}"
         assert response.json()['created'] is True, 'Order not created'
         delete_order(self.token, response.json()['orderId'])
+        logger.info("'test_add_valid_order' was successfully finished")
 
     def test_get_orders(self):
         add1 = add_order(self.token, 1, 'user1')
@@ -28,6 +44,7 @@ class TestOrders:
         assert len(response.json()) == 2, 'Total of orders returned is incorrect'
         delete_order(self.token, add1.json()['orderId'])
         delete_order(self.token, add2.json()['orderId'])
+        logger.info("'test_get_orders' was successfully finished")
 
     def test_delete_order(self):
         add = add_order(self.token, 4, "Test")
@@ -36,6 +53,7 @@ class TestOrders:
             f"Error: status code is not correct. Expected: 204, Actual: {response.status_code}"
         verify = get_orders(self.token)
         assert len(verify.json()) == 0, 'Order was not deleted'
+        logger.info("'test_delete_order' was successfully finished")
 
     def test_get_one_order(self):
         order = add_order(self.token, 1, 'TesT').json()['orderId']
@@ -47,24 +65,28 @@ class TestOrders:
         assert response.json()['customerName'] == 'TesT', 'customerName is not OK'
         assert response.json()['quantity'] == 1, 'quantity is not OK'
         delete_order(self.token, order)
+        logger.info("'test_get_one_order' was successfully finished")
 
     def test_delete_invalid_orderId(self):
         response = delete_order(self.token, 'querty5')
         assert response.status_code == 404, \
             f"Error: status code is not correct. Expected: 404, Actual: {response.status_code}"
         assert response.json()['error'] == 'No order with id querty5.', 'The error returned is not correct'
+        logger.info("'test_delete_invalid_orderId' was successfully finished")
 
     def test_get_order_invalid_id(self):
         response = get_order(self.token, 'e455e4')
         assert response.status_code == 404, \
             f"Error: status code is not correct. Expected: 404, Actual: {response.status_code}"
         assert response.json()['error'] == 'No order with id e455e4.', 'The error returned is not correct'
+        logger.info("'test_get_order_invalid_id' was successfully finished")
 
     def test_edit_invalid_orderId(self):
         response = edit_order(self.token, '4d5y7r', 'Test')
         assert response.status_code == 404, \
             f"Error: status code is not correct. Expected: 404, Actual: {response.status_code}"
         assert response.json()['error'] == 'No order with id 4d5y7r.', 'The error returned is not correct'
+        logger.info("'test_edit_invalid_orderId' was successfully finished")
 
     def test_edit_orderId(self):
         order = add_order(self.token, 1, 'Test_Order').json()['orderId']
@@ -74,3 +96,4 @@ class TestOrders:
         get = get_order(self.token, order)
         assert get.json()['customerName'] == 'Order_Test', 'Customer name was not updated'
         delete_order(self.token, order)
+        logger.info("'test_edit_orderId' was successfully finished")
