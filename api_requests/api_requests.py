@@ -4,7 +4,7 @@ import json
 from utils.json_utils import write_response_to_file
 
 BASE_URL = "https://reqres.in/"
-FILE_PATH = "/Users/tarasodynyuk/Documents/pytest_demo/python-agent-samples/sample-pytest/resources/api/"
+FILE_PATH = "resources/api/"
 
 
 class ReqresInApi:
