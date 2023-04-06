@@ -1,4 +1,5 @@
 import logging
+import pytest
 
 from pytest_zebrunner import attach_test_screenshot
 from pytest_zebrunner.zebrunner_logging import ZebrunnerHandler
@@ -14,7 +15,7 @@ url = "https://www.google.com/"
 cookies_dialog_test = "Before you continue to Google Search"
 search_value = "Zebrunner"
 
-
+@pytest.mark.skip(reason="Google have problem with some  web-element: NoSuchElementException")
 def test_simple(driver):
     logger.info("'test_simple' test was started")
 

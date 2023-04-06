@@ -9,5 +9,5 @@ def change_json_values(json_path,name,job):
         json.dump(data, json_file)
 
 def write_response_to_file(json_rs_path,res_json):
-    with open(json_rs_path, 'a') as output_file:
+    with open(json_rs_path, 'w') as output_file:
         json.dump(res_json, output_file)
