@@ -25,6 +25,7 @@ class TestApiClient:
     def setup_method(self):
         self.response = login(self.clientName, self.clientEmail)
 
+    @pytest.mark.maintainer("todynyuk")
     def test_successful_login(self):
         assert self.response.status_code == 201, f'Actual status code is incorrect. ' \
                                                  f'Expected: 400, Actual: {self.response.status_code}'
