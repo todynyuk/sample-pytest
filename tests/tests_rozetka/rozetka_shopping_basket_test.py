@@ -29,7 +29,7 @@ CurrentTestRun.set_build("TR build version")
 
 url = "https://rozetka.com.ua/ua/"
 
-@pytest.mark.owner('todynyuk')
+@pytest.mark.maintainer("todynyuk")
 def testUsualPriceItemAndInBasket(driver):
     logger.info("Attaching labels, artifacts and artifacts references to test")
     attach_test_label("TestLabel", "Rozetka")
@@ -59,7 +59,7 @@ def testUsualPriceItemAndInBasket(driver):
     assert smartphone_price_multiply == getSumPriceText(driver), "Prices are not equals"
     logger.info("'testUsualPriceItemAndInBasket' was successfully finished")
 
-@pytest.mark.owner('todynyuk')
+@pytest.mark.maintainer("todynyuk")
 def testAddGoodsInBasketAndCheckItEmpty(driver):
     logger.info("Attaching labels, artifacts and artifacts references to test")
     attach_test_label("TestLabel", "Rozetka")

@@ -21,6 +21,7 @@ CurrentTestRun.set_build("TR build version")
 
 
 class TestSuitPositive:
+    @pytest.mark.maintainer("todynyuk")
     def test_get_list_users(self, driver):
         response = ReqresInApi.get_list_users()
         attach_screenshot(driver)
@@ -33,6 +34,7 @@ class TestSuitPositive:
 
     parameters = [(2), (3)]
 
+    @pytest.mark.maintainer("todynyuk")
     @pytest.mark.parametrize("user_id", parameters)
     def test_get_single_user(self, driver, user_id):
         response = ReqresInApi.get_single_user(user_id)
@@ -47,6 +49,7 @@ class TestSuitPositive:
 
     parameters = [("Matthew", "programmer"), ("Steve", "designer"), ("Josh", "QA engineer")]
 
+    @pytest.mark.maintainer("todynyuk")
     @pytest.mark.parametrize("name,job", parameters)
     def test_create_new_user(self, driver, name, job):
         response = ReqresInApi.create_new_user(name, job)
@@ -64,6 +67,7 @@ class TestSuitPositive:
     parameters = [("Steven", "developer", 2), ("Robert", "game designer", 3),
                   ("Mike", "Project Manager", 5)]
 
+    @pytest.mark.maintainer("todynyuk")
     @pytest.mark.parametrize("name,job,user_id", parameters)
     def test_update_user(self, driver, name, job, user_id):
         response = ReqresInApi.update_user(name, job, user_id)
@@ -80,6 +84,7 @@ class TestSuitPositive:
 
     parameters = [(2), (3)]
 
+    @pytest.mark.maintainer("todynyuk")
     @pytest.mark.parametrize("user_id", parameters)
     def test_delete_user(self, driver, user_id):
         response = ReqresInApi.delete_user(user_id)
@@ -94,6 +99,7 @@ class TestSuitPositive:
 
     parameters = [("janet.weaver@reqres.in", "ReqRes"), ("emma.wong@reqres.in", "Curly")]
 
+    @pytest.mark.maintainer("todynyuk")
     @pytest.mark.parametrize("username,password", parameters)
     def test_registration_user(self, driver, username, password):
         response = ReqresInApi.register(username, password)
@@ -110,6 +116,7 @@ class TestSuitPositive:
 
     parameters = [("janet.weaver@reqres.in", "ReqRes"), ("emma.wong@reqres.in", "Curly")]
 
+    @pytest.mark.maintainer("todynyuk")
     @pytest.mark.parametrize("username,password", parameters)
     def test_login_user(self, driver, username, password):
         response = ReqresInApi.login(username, password)
@@ -126,6 +133,7 @@ class TestSuitPositive:
 
     parameters = [(2), (3)]
 
+    @pytest.mark.maintainer("todynyuk")
     @pytest.mark.parametrize("user_id", parameters)
     def test_get_user_avatar(self, driver, user_id):
         response = ReqresInApi.get_single_user(user_id)
@@ -135,6 +143,7 @@ class TestSuitPositive:
         assert response.json()['data']['avatar'] == f'https://reqres.in/img/faces/{user_id}-image.jpg', \
             'Avatar is not ok'
 
+    @pytest.mark.maintainer("todynyuk")
     def test_list_resource(self, driver):
         response = ReqresInApi.get_list_resource()
         attach_screenshot(driver)
@@ -148,6 +157,7 @@ class TestSuitPositive:
 
     parameters = [(2, "fuchsia rose"), (4, "aqua sky"), (5, "tigerlily")]
 
+    @pytest.mark.maintainer("todynyuk")
     @pytest.mark.parametrize("resource_id,name", parameters)
     def test_get_single_resource(self, driver, resource_id, name):
         response = ReqresInApi.get_resource(resource_id)

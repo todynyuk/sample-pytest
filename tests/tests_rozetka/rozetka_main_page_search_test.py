@@ -25,7 +25,7 @@ CurrentTestRun.set_build("TR build version")
 url = "https://rozetka.com.ua/ua/"
 search_value = "Samsung"
 
-@pytest.mark.owner('todynyuk')
+@pytest.mark.maintainer("todynyuk")
 def test_rozetka_correct_search(driver):
     logger.info("Attaching labels, artifacts and artifacts references to test")
     attach_test_label("TestLabel", "Rozetka")
@@ -44,7 +44,7 @@ def test_rozetka_correct_search(driver):
         search_value.lower()), "Device description not contains search_value"
     logger.info("'test_rozetka_correct_search' was successfully finished")
 
-@pytest.mark.owner('todynyuk')
+@pytest.mark.maintainer("todynyuk")
 def test_rozetka_incorrect_search(driver):
     logger.info("Attaching labels, artifacts and artifacts references to test")
     attach_test_label("TestLabel", "Rozetka")

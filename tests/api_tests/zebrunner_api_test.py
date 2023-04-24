@@ -1,5 +1,6 @@
 import logging
 
+import pytest
 import requests
 from pytest_zebrunner import attach_test_run_label, attach_test_run_artifact_reference, attach_test_label
 from pytest_zebrunner.zebrunner_logging import ZebrunnerHandler
@@ -20,7 +21,7 @@ CurrentTestRun.set_build("TR build version")
 
 url = "https://solvdinternal.zebrunner.com"
 
-
+@pytest.mark.maintainer("todynyuk")
 def test_request_response(driver):
     logger.info("Attaching labels, artifacts and artifacts references to test")
     attach_test_label("TestLabel", "ZebrunnerAPI")

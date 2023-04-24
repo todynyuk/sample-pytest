@@ -1,4 +1,7 @@
 import logging
+
+import pytest
+
 from api_requests.api_books_requests import get_books, get_book
 from pytest_zebrunner import attach_test_run_label, attach_test_run_artifact_reference
 from pytest_zebrunner.zebrunner_logging import ZebrunnerHandler
@@ -20,12 +23,14 @@ CurrentTestRun.set_build("TR build version")
 
 class TestBooks:
 
+    @pytest.mark.maintainer("todynyuk")
     def test_get_books_200(self, driver):
         response = get_books()
         attach_screenshot(driver)
         assert response.status_code == 200, 'Status code is not ok'
         logger.info("'test_get_books_200' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_get_books_invalid_type(self, driver):
         response = get_books(book_type='a1b2c0')
         attach_screenshot(driver)
@@ -35,6 +40,7 @@ class TestBooks:
                                            " Must be one of: fiction, non-fiction.", 'Response message is not correct'
         logger.info("'test_get_books_invalid_type' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_get_books_limit_greater_than_20(self, driver):
         response = get_books(limit=21)
         attach_screenshot(driver)
@@ -44,6 +50,7 @@ class TestBooks:
                                            " Cannot be greater than 20.", 'Response message is not correct'
         logger.info("'test_get_books_limit_greater_than_20' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_get_books_when_negative_limit(self, driver):
         response = get_books(limit=-5)
         attach_screenshot(driver)
@@ -53,6 +60,7 @@ class TestBooks:
                                            " Must be greater than 0.", 'Response message is not correct'
         logger.info("'test_get_books_when_negative_limit' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_get_books_when_limit_is_0(self, driver):
         response = get_books(limit=0)
         attach_screenshot(driver)
@@ -61,12 +69,14 @@ class TestBooks:
         assert len(response.json()) == 6, 'Total books returned is incorrect'
         logger.info("'test_get_books_when_limit_is_0' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_get_all_books(self, driver):
         response = get_books(limit=6)
         attach_screenshot(driver)
         assert len(response.json()) == 6, 'Total books returned is incorrect'
         logger.info("'test_get_all_books' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_verify_books_attributes(self, driver):
         response = get_books()
         attach_screenshot(driver)
@@ -77,6 +87,7 @@ class TestBooks:
             assert item in result == ['id', 'name', 'type', 'available'], "Attribute doesn't exist"
         logger.info("'test_verify_books_attributes' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_get_book(self, driver):
         response = get_book(3)
         attach_screenshot(driver)
@@ -92,6 +103,7 @@ class TestBooks:
         assert response.json() == expected, 'Response body is incorrect'
         logger.info("'test_get_book' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_get_book_invalid_id(self, driver):
         response = get_book(87524)
         attach_screenshot(driver)

@@ -15,6 +15,7 @@ url = "https://www.google.com/"
 cookies_dialog_test = "Before you continue to Google Search"
 search_value = "Zebrunner"
 
+@pytest.mark.maintainer("skywalker")
 @pytest.mark.skip(reason="Google have problem with some  web-element: NoSuchElementException")
 def test_simple(driver):
     logger.info("'test_simple' test was started")

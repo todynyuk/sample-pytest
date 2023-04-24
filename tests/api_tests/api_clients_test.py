@@ -32,6 +32,7 @@ class TestApiClient:
         assert 'accessToken' in self.response.json().keys(), 'Token property is not present in the response'
         logger.info("'test_successful_login' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_invalid_client_name(self):
         self.response = login("", "test@email.com")
         assert self.response.status_code == 400, f'Actual status code is incorrect.' \
@@ -39,6 +40,7 @@ class TestApiClient:
         assert self.response.json()['error'] == 'Invalid or missing client name.', 'Wrong message error was returned'
         logger.info("'test_invalid_client_name' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_invalid_login_credentials(self):
         self.response = login("3", "6")
         assert self.response.status_code == 400, f'Actual status code is incorrect.' \
@@ -46,6 +48,7 @@ class TestApiClient:
         assert self.response.json()['error'] == 'Invalid or missing client name.', 'Wrong message error was returned'
         logger.info("'test_invalid_login_credentials' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_missing_client_name(self):
         self.response = login("", "test@e.com")
         assert self.response.status_code == 400, f'Actual status code is incorrect.' \
@@ -53,6 +56,7 @@ class TestApiClient:
         assert self.response.json()['error'] == 'Invalid or missing client name.', 'Wrong message error was returned'
         logger.info("'test_missing_client_name' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_invalid_email_test(self):
         self.response = login("test_", "test@domain")
         assert self.response.status_code == 400, f'Actual status code is incorrect.' \
@@ -60,6 +64,7 @@ class TestApiClient:
         assert self.response.json()['error'] == 'Invalid or missing client email.', 'Wrong message error was returned'
         logger.info("'test_invalid_email_test' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_missing_email(self):
         self.response = login("login4", "")
         assert self.response.status_code == 400, f'Actual status code is incorrect.' \
@@ -67,6 +72,7 @@ class TestApiClient:
         assert self.response.json()['error'] == 'Invalid or missing client email.', 'Wrong message error was returned'
         logger.info("'test_missing_email' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_missing_login_credentials(self):
         self.response = login("", "")
         assert self.response.status_code == 400, f'Actual status code is incorrect.' \
@@ -86,6 +92,7 @@ class TestApiClient:
 
     ]
 
+    @pytest.mark.maintainer("todynyuk")
     @pytest.mark.parametrize('username, user_email', param)
     def test_invalid_email_param(self, username, user_email):
         self.response = login("username", "user_email")

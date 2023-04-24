@@ -28,7 +28,7 @@ CurrentTestRun.set_locale("en_US")
 CurrentTestRun.set_build("TR build version")
 url = "https://rozetka.com.ua/ua/"
 
-@pytest.mark.owner('todynyuk')
+@pytest.mark.maintainer("todynyuk")
 @pytest.mark.skip(reason="Rozetka have problem with sorting by price")
 def testFilterByBrandNameMaxCustomPriceAndAvailable(driver):
     logger.info("Attaching labels, artifacts and artifacts references to test")
@@ -59,7 +59,7 @@ def testFilterByBrandNameMaxCustomPriceAndAvailable(driver):
     assert length == 0, "One or more goods are not available"
     logger.info("'testFilterByBrandNameMaxCustomPriceAndAvailable' was successfully finished")
 
-@pytest.mark.owner('todynyuk')
+@pytest.mark.maintainer("todynyuk")
 def testVerifyItemRamMatrixTypeAndProcessor(driver):
     logger.info("Attaching labels, artifacts and artifacts references to test")
     attach_test_label("TestLabel", "Rozetka")
@@ -102,7 +102,7 @@ def testVerifyItemRamMatrixTypeAndProcessor(driver):
         "Computer type text not contains in description device text"
     logger.info("'testVerifyItemRamMatrixTypeAndProcessor' was successfully finished")
 
-@pytest.mark.owner('todynyuk')
+@pytest.mark.maintainer("todynyuk")
 @pytest.mark.skip(reason="Rozetka have problem with sorting by price")
 def testVerifySortByPrice(driver):
     logger.info("Attaching labels, artifacts and artifacts references to test")
@@ -125,7 +125,7 @@ def testVerifySortByPrice(driver):
     assert is_good_prices_hight_to_low, "One or more prices not sorted from high to low price"
     logger.info("'testVerifySortByPrice' was successfully finished")
 
-@pytest.mark.owner('todynyuk')
+@pytest.mark.maintainer("todynyuk")
 def testAddingAndCountGoodsInBasket(driver):
     logger.info("Attaching labels, artifacts and artifacts references to test")
     attach_test_label("TestLabel", "Rozetka")
@@ -146,7 +146,7 @@ def testAddingAndCountGoodsInBasket(driver):
         "Cart Goods Counter Text isn't presented"
     logger.info("'testAddingAndCountGoodsInBasket' was successfully finished")
 
-@pytest.mark.owner('todynyuk')
+@pytest.mark.maintainer("todynyuk")
 def test_choose_brands_and_check(driver):
     logger.info("Attaching labels, artifacts and artifacts references to test")
     attach_test_label("TestLabel", "Rozetka")

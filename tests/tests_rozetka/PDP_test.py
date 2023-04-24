@@ -26,7 +26,7 @@ CurrentTestRun.set_locale("en_US")
 CurrentTestRun.set_build("TR build version")
 url = "https://rozetka.com.ua/ua/"
 
-@pytest.mark.owner('todynyuk')
+@pytest.mark.maintainer("todynyuk")
 def testItemRamAndPrice(driver):
     logger.info("Attaching labels, artifacts and artifacts references to test")
     attach_test_label("TestLabel", "Rozetka")

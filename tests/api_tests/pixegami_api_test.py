@@ -1,3 +1,5 @@
+import pytest
+
 from api_methods.api_methods import new_task_payload, create_task, get_task, update_task, list_tasks, delete_task
 import logging
 
@@ -22,6 +24,7 @@ URL = "https://todo.pixegami.io/"
 
 class Test_API:
 
+    @pytest.mark.maintainer("todynyuk")
     def test_create_task(self, driver):
         payload = new_task_payload()
         attach_screenshot(driver)
@@ -40,6 +43,7 @@ class Test_API:
         assert get_task_data["user_id"] == payload["user_id"], "Values are not equals"
         logger.info("'test_create_task' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_update_task(self, driver):
         payload = new_task_payload()
         attach_screenshot(driver)
@@ -64,6 +68,7 @@ class Test_API:
         assert get_task_data["user_id"] == new_payload["user_id"], "Values are not equals"
         logger.info("'test_update_task' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_list_tasks(self, driver):
         count = 3
         payload = new_task_payload()
@@ -81,6 +86,7 @@ class Test_API:
         assert len(tasks) == count, "Values are not equals"
         logger.info("'test_list_tasks' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_delete_task(self, driver):
         payload = new_task_payload()
         attach_screenshot(driver)

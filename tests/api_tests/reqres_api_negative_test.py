@@ -23,6 +23,7 @@ CurrentTestRun.set_build("TR build version")
 class TestSuitNegative:
     parameters = [(25), (35)]
 
+    @pytest.mark.maintainer("todynyuk")
     @pytest.mark.parametrize("user_id", parameters)
     def test_get_invalid_single_user(self, driver, user_id):
         response = ReqresInApi.get_single_user(user_id)
@@ -37,6 +38,7 @@ class TestSuitNegative:
 
     parameters = [("", "ReqRes"), ("", "Curly")]
 
+    @pytest.mark.maintainer("todynyuk")
     @pytest.mark.parametrize("username,password", parameters)
     def test_registration_without_email(self, driver, username, password):
         response = ReqresInApi.register(username, password)
@@ -55,6 +57,7 @@ class TestSuitNegative:
 
     parameters = [("janet.weaver@reqres.in", ""), ("emma.wong@reqres.in", "")]
 
+    @pytest.mark.maintainer("todynyuk")
     @pytest.mark.parametrize("username,password", parameters)
     def test_registration_without_password(self, driver, username, password):
         response = ReqresInApi.register(username, password)
@@ -73,6 +76,7 @@ class TestSuitNegative:
 
     parameters = [("", "ReqRes"), ("", "Curly")]
 
+    @pytest.mark.maintainer("todynyuk")
     @pytest.mark.parametrize("username,password", parameters)
     def test_login_without_email(self, driver, username, password):
         response = ReqresInApi.login(username, password)
@@ -91,6 +95,7 @@ class TestSuitNegative:
 
     parameters = [("janet.weaver@reqres.in", ""), ("emma.wong@reqres.in", "")]
 
+    @pytest.mark.maintainer("todynyuk")
     @pytest.mark.parametrize("username,password", parameters)
     def test_login_without_password(self, driver, username, password):
         response = ReqresInApi.login(username, password)
@@ -109,6 +114,7 @@ class TestSuitNegative:
 
     parameters = [("123.weaver@reqres.in", "ReqRes"), ("emma150.wong@reqres.in", "Curly")]
 
+    @pytest.mark.maintainer("todynyuk")
     @pytest.mark.parametrize("username,password", parameters)
     def test_login_with_wrong_email(self, driver, username, password):
         response = ReqresInApi.login(username, password)

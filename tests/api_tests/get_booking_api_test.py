@@ -1,5 +1,7 @@
 import logging
 
+import pytest
+
 from utils.bookings import Bookings
 
 from utils.http_manager import HttpManager
@@ -25,6 +27,7 @@ CurrentTestRun.set_build("TR build version")
 
 class Test_Booking_API_GetTests:
 
+    @pytest.mark.maintainer("todynyuk")
     def test_get_booking(self, driver):
         response = HttpManager.get(Bookings.GET_BOOKING.format(Bookings.get_random_booking()))
         attach_screenshot(driver)
@@ -34,6 +37,7 @@ class Test_Booking_API_GetTests:
         assert isinstance(response.json()['depositpaid'], bool), "Isinstance is not bool"
         logger.info("'test_get_booking' was successfully finished")
 
+    @pytest.mark.maintainer("todynyuk")
     def test_get_booking_ids(self, driver):
         response = HttpManager.get(Bookings.GET_BOOKINGS)
         attach_screenshot(driver)
