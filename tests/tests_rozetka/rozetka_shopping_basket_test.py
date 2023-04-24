@@ -1,6 +1,7 @@
 import logging
 import time
 
+import pytest
 from pytest_zebrunner import attach_test_run_label, attach_test_run_artifact_reference, attach_test_label, \
     attach_test_screenshot
 from pytest_zebrunner.zebrunner_logging import ZebrunnerHandler
@@ -28,7 +29,7 @@ CurrentTestRun.set_build("TR build version")
 
 url = "https://rozetka.com.ua/ua/"
 
-
+@pytest.mark.owner('todynyuk')
 def testUsualPriceItemAndInBasket(driver):
     logger.info("Attaching labels, artifacts and artifacts references to test")
     attach_test_label("TestLabel", "Rozetka")
@@ -58,7 +59,7 @@ def testUsualPriceItemAndInBasket(driver):
     assert smartphone_price_multiply == getSumPriceText(driver), "Prices are not equals"
     logger.info("'testUsualPriceItemAndInBasket' was successfully finished")
 
-
+@pytest.mark.owner('todynyuk')
 def testAddGoodsInBasketAndCheckItEmpty(driver):
     logger.info("Attaching labels, artifacts and artifacts references to test")
     attach_test_label("TestLabel", "Rozetka")
