@@ -6,8 +6,8 @@ from selenium import webdriver
 
 @pytest.fixture(scope="function")
 def driver():
-    # zebrunner_selenium_grid = os.getenv("ZEBRUNNER_SELENIUM_GRID", "http://127.0.0.1:4444")
-    zebrunner_selenium_grid = os.getenv("ZEBRUNNER_SELENIUM_GRID", "https://solvdinternal:O9JjPcqxJ0hPs685@engine.zebrunner.com/wd/hub")
+    zebrunner_selenium_grid = os.getenv("ZEBRUNNER_SELENIUM_GRID", "http://127.0.0.1:4444")
+    # zebrunner_selenium_grid = os.getenv("ZEBRUNNER_SELENIUM_GRID", "https://solvdinternal:O9JjPcqxJ0hPs685@engine.zebrunner.com/wd/hub")
 
 
     # options = webdriver.ChromeOptions()
