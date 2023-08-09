@@ -10,4 +10,4 @@ reporting:
   run:
     treat_skips_as_failures: false
     display-name: Pytest Zebrunner Launcher
-    environment: PyCharm
+    environment: LOCAL
