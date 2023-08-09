@@ -9,6 +9,6 @@ reporting:
     notify-on-each-failure: true
   run:
     treat_skips_as_failures: false
-    display-name: Zebrunner_Pytests_Launcher
-    build: 1.12.1.96-SNAPSHOT
+    display-name: Pytest Zebrunner Launcher
+    build: 1.15.0.134-SNAPSHOT
     environment: PyCharm
