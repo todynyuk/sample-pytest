@@ -2,5 +2,5 @@ selenium==4.11.2
 pytest==7.4.0
 requests==2.31.0
 pytest-zebrunner==1.5.7
-PyYAML==5.3.1
+
 
