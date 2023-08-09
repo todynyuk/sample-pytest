@@ -14,20 +14,12 @@ def driver():
     # options.platform_name = "linux"
     # options.browser_version = "latest"
 
-    # options = webdriver.FirefoxOptions()
-    # options.platform_name = "linux"
+    options = webdriver.FirefoxOptions()
+    options.platform_name = "linux"
 
     # options.browser_version = "108.0"
-
-    # options.browser_version = "latest"
-    # options.set_capability("enableVideo", "true")
-
-    ############################################################################################
-    options = webdriver.ChromeOptions()
-    options.platform_name = "linux"
-    options.browser_version = "109.0"
+    options.browser_version = "latest"
     options.set_capability("enableVideo", "true")
-    ############################################################################################
 
     driver = webdriver.Remote(
         command_executor=zebrunner_selenium_grid,
