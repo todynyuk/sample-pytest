@@ -25,7 +25,7 @@ CurrentTestRun.set_build("TR build version")
 url = "https://rozetka.com.ua/ua/"
 search_value = "Samsung"
 
-@pytest.mark.maintainer("todynyuk")
+# @pytest.mark.maintainer("todynyuk")
 def test_rozetka_correct_search(driver):
     logger.info("Attaching labels, artifacts and artifacts references to test")
     attach_test_label("TestLabel", "Rozetka")
